@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+# IMPORTANT: correct import
 from app.routers.leads import router as leads_router
 
 app = FastAPI()
@@ -24,4 +25,5 @@ def health():
     return {"ok": True}
 
 
+# IMPORTANT: this MUST be here
 app.include_router(leads_router)
