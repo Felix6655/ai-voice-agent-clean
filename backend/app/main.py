@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# IMPORTANT: correct import
 from app.routers.leads import router as leads_router
+from app.routers.voice import router as voice_router
 
-app = FastAPI()
+app = FastAPI(title="AI Voice Agent Clean")
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,5 +25,5 @@ def health():
     return {"ok": True}
 
 
-# IMPORTANT: this MUST be here
-app.include_router(leads_router)
+app.include_router(leads_router, prefix="/api")
+app.include_router(voice_router, prefix="/api")
